@@ -1,8 +1,9 @@
 .login-wrapper{
     background-color: white;
-    height: 500px;
+    height: fit-content;
     max-width: 100%;
     width: 400px;
+    
 }
 .login-head{
     font-size: 20px;

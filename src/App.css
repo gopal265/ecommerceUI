@@ -16,6 +16,19 @@
     justify-content: center;
 }
 
+.center-v-sb{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.center-h{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 
 /* div{
     border: 2px solid black;
