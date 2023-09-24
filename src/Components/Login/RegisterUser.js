@@ -9,7 +9,7 @@ const Registeruser = () => {
     const redirect = useNavigate()
     const dispatch = useDispatch()
     const local_Email = localStorage.getItem('email').replace(/"/g, '');
-    const { user, error, loading } = useSelector(state => state.updateuser)
+    const { user, error } = useSelector(state => state.updateuser)
     const {register,handleSubmit,formState:{errors}} = useForm()
 
     const submitdata = (data) =>{
@@ -21,22 +21,22 @@ const Registeruser = () => {
     }
 
     
-    const [state, setstate] = useState(false)
+    
 
-    if (state === false && user.name) {
-        dispatch(getuser())
-        console.log(user)
-        setstate(true)
-        redirect('/dashboard')
-   }
+  
 
    useEffect(() => {
         
     if(error){
         dispatch(clearErrors())
     }
+    if ( user.userName) {
+        dispatch(getuser())
+        console.log(user)
+        redirect('/dashboard')
+   }
     
-    }, [ error, dispatch]);
+    }, [ error, dispatch,user]);
 
 
     return (

@@ -2,6 +2,9 @@ import {
     REQUEST_USER_NO,
     SUCCESS_USER_NO,
     FAIL_USER_NO,
+    REQUEST_LOGIN_PASSWORD,
+    SUCCESS_LOGIN_PASSWORD,
+    FAIL_LOGIN_PASSWORD,
     REQUEST_USER,
     SUCCESS_USER,
     FAIL_USER,
@@ -39,6 +42,18 @@ export const registerMail = (email) => async (dispatch) => {
 
         dispatch({ type: FAIL_USER_NO, payload: error.response.data.message })
 
+    }
+}
+
+export const loginBYPassword = ({email,password}) => async(dispatch) =>{
+    try {
+        dispatch({type:REQUEST_LOGIN_PASSWORD})
+
+        const {data} = await api.loginBYPassword(email,password)
+        dispatch({type:SUCCESS_LOGIN_PASSWORD,payload:data.user,message:data.message})
+    } catch (error) {
+    
+        dispatch({type:FAIL_LOGIN_PASSWORD, payload:error.response.data.message})
     }
 }
 

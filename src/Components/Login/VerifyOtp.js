@@ -41,12 +41,12 @@ const VerifyOtp = () => {
     if (loading === false) {
       if (user) {
         if (user.verify === 'verified') {
-          // dispatch(getuser())
-          if(!user.name){
+          dispatch(getuser())
+          if(!user.userName){
             
             navigate('/registeruser')
           }
-          if(user.name){
+          if(user.userName){
             navigate('/dashboard')
           }
           } 
@@ -56,7 +56,7 @@ const VerifyOtp = () => {
      
     }
    
-  }, [user, loading, navigate,dispatch]);
+  }, [user, loading,navigate]);
 
 
   return (

@@ -9,3 +9,5 @@ export const verifyOtp = (email,otp) => axios.post(`${base_url}/${email.toString
 export const updateUser = (email,data) => axios.patch(`${base_url}/${email}/updateuser`,data)
 
 export const getUser = (email) => axios.get(`${base_url}/${email}/getuser`)
+
+export const loginBYPassword = (email,password) => axios.get(`${base_url}/${email}/${password}/login`)

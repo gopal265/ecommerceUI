@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import validator from "validator"
 import './Login.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { registermobile, clearErrors, registerMail } from '../../actions/auth'
+import { registermobile, clearErrors, registerMail, loginBYPassword } from '../../actions/auth'
 import { useNavigate } from 'react-router-dom'
 
 // import {useAlert} from 'react-alert'
@@ -10,9 +10,11 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
   const img = 'https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg'
   const [email, setEmail] = useState('')
+  const [password,setPassword] = useState('')
+  const [login,setLogin] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {loading, message, user} = useSelector(state => state.Registeruser)
+  const {loading, message, user,error} = useSelector(state => state.Registeruser)
 
   let par = document.getElementById('error')
 
@@ -23,8 +25,13 @@ const Login = () => {
     if(!validator.isEmail(email.trim())) par.innerHTML = "Please Enter a valid Email Address";
 
     if(validator.isEmail(email.trim())){
-      dispatch(registerMail(email))
-      localStorage.setItem("email",JSON.stringify(email))
+      if (!login) dispatch(registerMail(email))
+      else localStorage.setItem("email",JSON.stringify(email))
+    }
+    if (login){
+      if(password.trim()!== ''){
+        dispatch(loginBYPassword({email:email,password:password}))
+      }
     }
    
 
@@ -32,12 +39,15 @@ const Login = () => {
 
   useEffect(() => {
     
-     if (message && user) {
+     if (message && user &&  !login) {
     navigate('/verifyotp')
   }
+    if(message === "Successfully Loggedin" && user && login){
+      navigate('/')
+    }
   
   
-  }, [navigate,message]);
+  }, [user,message]);
 
   return (
 
@@ -53,10 +63,14 @@ const Login = () => {
          
               onChange={(e) => setEmail(e.target.value)} placeholder='Enter Email' />
             <p id='error' className=' '></p>
+            {login && <input type='password' name='password' className='login-email'  onChange={(e) => setPassword(e.target.value)} placeholder='Enter Password' />}
 
             <p className='login-description'>By Continuing, I agree to the <span className='login-help'>Terms of Use</span>  & <span className='login-help'> Privacy Policy</span></p>
-            <button type='submit' className='login-button'  onClick={continues}>{ loading !== true ? 'CONTINUE' : 'Loading...' }  </button>
+            <button type='submit' className='login-button'  onClick={continues}>{ login ?  loading !==true ?'LOGIN' : 'Loading...' : loading !== true  ?"CONTINUE" :"Loading.." }  </button>
             <p className='login-description'>Have trouble loggging in? <span className='login-help'>Get help</span></p>
+            {!login &&<p className='login-description'>Already have Account? <span className='login-help' onClick={() => setLogin(!login)}>Login by Password</span></p> }
+            {login &&<p className='login-description'>No Account? <span className='login-help' onClick={() => setLogin(!login)}>Register</span></p> }
+
           </div>
         </div>
       </div>

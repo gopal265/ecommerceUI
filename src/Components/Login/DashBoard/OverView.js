@@ -2,8 +2,7 @@ import React, { Fragment } from 'react'
 // import Footer from '../../Footer/Footer'
 import "./OverView.css"
 import Sidebar from './SideBar'
-const Overview = () => {
-  const user = { firstName: "hi", lastName: "hello", email: '123r', phoneNumber: 12334, userName: 'redyeye' }
+const Overview = ({user}) => {
   return (
     <Fragment>
       <div className='overview-wrapper container p-5'>
@@ -13,10 +12,10 @@ const Overview = () => {
         </div>
         <hr></hr>
         <div className='row'>
-          <div className='col-md-2 sidebar'>
+          <div className='col-md-3 col-sm-4 sidebar'>
             <Sidebar />
           </div>
-          <div className='col-md    overview-profile-container '>
+          <div className='col    overview-profile-container '>
             <div className='overview-profile-wrapper center-h mt-4 ml-1 pt-5'>
             <div className='overview-profile '>
               Profile Details

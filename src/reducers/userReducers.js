@@ -1,6 +1,9 @@
 import {REQUEST_USER_NO,
     SUCCESS_USER_NO,
     FAIL_USER_NO,
+    REQUEST_LOGIN_PASSWORD,
+    SUCCESS_LOGIN_PASSWORD,
+    FAIL_LOGIN_PASSWORD,
     REQUEST_USER,
     SUCCESS_USER,
     FAIL_USER,
@@ -29,7 +32,7 @@ export const registeruser = (state = {user:{}}, action) =>{
             };
 
         case SUCCESS_USER_NO:
-            return {
+            return {...state,
                 loading: false,
                 user:action.payload, 
                 message:action.message
@@ -45,11 +48,27 @@ export const registeruser = (state = {user:{}}, action) =>{
                         ...state,
                         error: null
                 };
+        case REQUEST_LOGIN_PASSWORD:
+                return {...state,
+                    loading : true
+                };
+        case SUCCESS_LOGIN_PASSWORD:
+                return {...state,
+                    loading : false,
+                    user : action.payload,
+                    message:action.message
+                };
+        case FAIL_LOGIN_PASSWORD:
+                return {...state,
+                    loading : false,
+                    error : action.payload
+            } 
     
         default:
             return state;
     }
 }
+
 
 export const getuser = (state = {user:{}}, action) =>{
 switch (action.type) {
