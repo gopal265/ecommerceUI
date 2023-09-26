@@ -9,6 +9,7 @@ import Home from './Components/Home/Home'
 import UpdateUser from './Components/Login/UpdateUser';
 import { useEffect } from 'react';
 
+
 function App() {
   const {user} = useSelector(state => state.user)
   return (
@@ -21,6 +22,8 @@ function App() {
       <Route path='/registerUser' Component={Registeruser} />
       <Route path='/dashboard'  element={<Overview user={user} />} />
       <Route path='/updateUser' Component={UpdateUser} />
+     
+      
 
       </Routes>
       
