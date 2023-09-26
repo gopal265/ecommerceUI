@@ -84,12 +84,30 @@ switch (action.type) {
             isAuthentication: true,
             user:action.payload
         };
-        case SUCCESS_LOGOUT:
+    case SUCCESS_LOGOUT:
         return {
             loading: false,
             isAuthentication: false,
             user:null
         };
+    case REQUEST_UPDATE_USER:
+            return {
+                loading: true,
+                user:{}
+            };
+    
+    case SUCCESS_UPDATE_USER:
+            return {
+                loading: false,
+                user: action.payload
+            };
+    
+    case FAIL_UPDATE_USER:
+            
+                return {
+                    loading: false,
+                    user:null
+                };
         
 
     case FAIL_USER:
@@ -162,6 +180,7 @@ switch (action.type) {
             return {
                 loading: false,
             };
+    
     case CLEAR_ERRORS:
                 return {
                     ...state,
@@ -176,24 +195,7 @@ switch (action.type) {
 export const updateuser = (state = {user:{}}, action) =>{
 switch (action.type) {
     
-        case REQUEST_UPDATE_USER:
-        return {
-            loading: true,
-            user:{}
-        };
-
-    case SUCCESS_UPDATE_USER:
-        return {
-            loading: false,
-            user: action.payload
-        };
-
-    case FAIL_UPDATE_USER:
-        
-            return {
-                loading: false,
-                user:null
-            };
+     
     case CLEAR_ERRORS:
                 return {
                     ...state,

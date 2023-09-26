@@ -1,0 +1,17 @@
+.navbar-icon{
+    padding: 0px 10px;
+    font-size: 20px;
+}
+.navbar-icon p{
+    font-size: 12px;
+    margin: 0px;
+}
+
+.nav-link{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.navbar{
+    padding: 0px 50px;
+}

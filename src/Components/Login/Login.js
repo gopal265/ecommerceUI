@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react'
 import validator from "validator"
 import './Login.css'
 import { useDispatch, useSelector } from 'react-redux'
-import { registermobile, clearErrors, registerMail, loginBYPassword } from '../../actions/auth'
+import { registermobile, clearErrors, registerMail, loginBYPassword, getuser } from '../../actions/auth'
 import { useNavigate } from 'react-router-dom'
-
+import NavBar from '../NavBar/NavBar'
 // import {useAlert} from 'react-alert'
 
 const Login = () => {
@@ -43,6 +43,7 @@ const Login = () => {
     navigate('/verifyotp')
   }
     if(message === "Successfully Loggedin" && user && login){
+      dispatch(getuser())
       navigate('/')
     }
   
@@ -52,6 +53,7 @@ const Login = () => {
   return (
 
     <Fragment>
+      <NavBar />
       <div className='full-width full-height center '>
         <div className=' login-wrapper' >
           <img src={img} alt="login" className='full-width' />

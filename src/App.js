@@ -6,9 +6,11 @@ import Overview from "./Components/Login/DashBoard/OverView"
 import Registeruser from "./Components/Login/RegisterUser"
 import VerifyOtp from "./Components/Login\/VerifyOtp"
 import Home from './Components/Home/Home'
+import UpdateUser from './Components/Login/UpdateUser';
+import { useEffect } from 'react';
 
 function App() {
-  const {loading, user, error} = useSelector(state => state.user)
+  const {user} = useSelector(state => state.user)
   return (
     <div className="App app-width">
       <BrowserRouter >
@@ -18,6 +20,7 @@ function App() {
       <Route path='/verifyOtp' Component={VerifyOtp} />
       <Route path='/registerUser' Component={Registeruser} />
       <Route path='/dashboard'  element={<Overview user={user} />} />
+      <Route path='/updateUser' Component={UpdateUser} />
 
       </Routes>
       

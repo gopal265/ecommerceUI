@@ -2,9 +2,14 @@ import React, { Fragment } from 'react'
 // import Footer from '../../Footer/Footer'
 import "./OverView.css"
 import Sidebar from './SideBar'
+import NavBar from '../../NavBar/NavBar'
+import { useNavigate } from 'react-router-dom'
 const Overview = ({user}) => {
+  const navigate=useNavigate()
   return (
     <Fragment>
+      <NavBar />
+      { user &&
       <div className='overview-wrapper container p-5'>
         <div className='overview-head'>
           <h1 className=''>Account</h1>
@@ -64,7 +69,7 @@ const Overview = ({user}) => {
                 </tbody>
               </table>
               <div>
-                <button className='login-button edit-btn'>Edit</button>
+                <button className='login-button edit-btn' onClick={()=>navigate("/updateUser")}>Edit</button>
               </div>
               </div>
             </div>
@@ -78,6 +83,7 @@ const Overview = ({user}) => {
         </div>
 
       </div>
+}
       {/* 
           <Footer/> */}
 

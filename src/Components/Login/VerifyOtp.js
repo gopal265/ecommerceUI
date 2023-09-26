@@ -78,7 +78,7 @@ const VerifyOtp = () => {
                 onChange={(e) => setotp(e.target.value)} placeholder='Enter OTP' />
               <p id='error' className='text-xs text-red-500 '></p>
 
-              <h1 onClick={Resndotp} className='login-help'>Resend OTP</h1>
+              <h1 onClick={Resndotp} className='login-help login-description'>Resend OTP</h1>
               <button type='submit' className='login-button' > {loading !== false ? 'VERIFY': 'Loading...'} </button>
               <h1 className='login-description'>Have trouble loggging in? <span className='login-help'>Get help</span></h1>
             </div>

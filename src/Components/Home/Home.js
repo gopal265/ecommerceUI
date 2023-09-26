@@ -4,6 +4,8 @@ import "./Home.css"
 import HomeGit from './HomeGift/HomeGit'
 import TrendBrands from './TrendBrands/TrendBrands'
 import Categories from './Categories/Categories'
+import NavBar from '../NavBar/NavBar'
+import ProfileHover from './ProfileHover/ProfileHover'
 const Home = () => {
    const gifts = [
     'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/cef0d9ed-5f6b-4fea-af6f-5a7431ea25c11691045352299-Makeup.png',
@@ -22,6 +24,7 @@ const Home = () => {
 ]
   return (
     <div>
+      <NavBar />
      <HomeCarousel />
      <h2 className='home-heading'>Medal Worthy Brands</h2>
 
@@ -42,7 +45,7 @@ const Home = () => {
          <div className='row'>
          {
          catgegories.map(cat =>(
-            <div className='col-md-2 col-sm-3 ' >
+            <div className='col-md-2 col-sm-3 gift ' >
                <Categories img_url={cat} />
                </div>
          ))

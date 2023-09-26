@@ -6,16 +6,26 @@ import { useNavigate } from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 import NavBar from '../NavBar/NavBar'
 
-const Registeruser = () => {
+const UpdateUser = () => {
     const redirect = useNavigate()
     const dispatch = useDispatch()
     const local_Email = localStorage.getItem('email').replace(/"/g, '');
-    const { user, error } = useSelector(state => state.updateuser)
-    const {register,handleSubmit,formState:{errors}} = useForm()
+    const { user, error } = useSelector(state => state.user)
+    const {register,handleSubmit,formState:{errors}} = useForm({
+        defaultValues:{
+            'firstName':user.firstName,
+            'lastName':user.lastName,
+            'userName':user.userName,
+            'phoneNumber':user.phoneNumber,
+            'password':user.password
+        }
+    })
 
     const submitdata = (data) =>{
             if (data){
                 dispatch(updateUser(data,user._id))
+                
+                redirect('/dashboard')
             }
 
 
@@ -31,13 +41,9 @@ const Registeruser = () => {
     if(error){
         dispatch(clearErrors())
     }
-    if ( user.userName) {
-        dispatch(getuser())
-        console.log(user)
-        redirect('/dashboard')
-   }
+  
     
-    }, [ error, dispatch,user]);
+    }, [ error, dispatch]);
 
 
     return (
@@ -80,4 +86,4 @@ const Registeruser = () => {
     )
 }
 
-export default Registeruser
+export default UpdateUser;
