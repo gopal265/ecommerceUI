@@ -1,7 +1,9 @@
-export const Topwear = [
+
+export const Topwear =  [
     {
         title: 'T-Shirts',
         url: '#'
+      
     },
     {
         title: 'Casual Shirts',
@@ -35,7 +37,8 @@ export const Topwear = [
 
 ]
 
-export const indian_festive = [
+export const indian_festive =
+ [
     {
         title: 'Kurtas & Kurta Sets',
         url: '#'
@@ -56,7 +59,8 @@ export const indian_festive = [
 
 ]
 
-export const bottomwear = [
+export const bottomwear = 
+ [
     {
         title: 'Jeans',
         url: '#'
@@ -81,7 +85,8 @@ export const bottomwear = [
 
 ]
 
-export const Innerwear_Sleepwear = [
+export const Innerwear_Sleepwear =
+ [
     {
         title: 'Briefs & Trunks',
         url: '#'
@@ -106,7 +111,8 @@ export const Innerwear_Sleepwear = [
 
 ]
 
-export const Footwear = [
+export const Footwear = 
+[
     {
         title: 'Casual Shoes',
         url: '#'
@@ -139,7 +145,8 @@ export const Footwear = [
 
 ]
 
-export const Sports_Active_Wear = [
+export const Sports_Active_Wear = 
+[
     {
         title: 'Sports Shoes',
         url: '#'
@@ -176,7 +183,8 @@ export const Sports_Active_Wear = [
 
 ]
 
-export const Gadgets = [
+export const Gadgets = 
+[
     {
         title: 'Smart Wearables',
         url: '#'
@@ -197,7 +205,8 @@ export const Gadgets = [
 
 ]
 
-export const Fashion_Accessories = [
+export const Fashion_Accessories =
+ [
     {
         title: 'Wallets',
         url: '#'
@@ -252,7 +261,8 @@ export const Fashion_Accessories = [
 
 // *************************************Women****************************************
 
-export const Indian_FusionWear = [
+export const Indian_FusionWear =
+ [
     {
         title: 'Kurtas & Suits',
         url: '#'
@@ -295,7 +305,8 @@ export const Indian_FusionWear = [
     }
 ]
 
-export const Western_Wear= [
+export const Western_Wear=
+[
     {
         title: 'Dresses',
         url: '#'

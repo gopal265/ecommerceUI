@@ -19,13 +19,15 @@
 .navbar{
     padding: 0px 50px;
 }
-.hover-button {
+.navbar-brand:hover {
     background-color: #0db7af;
     color: white;
     font-weight: bold;
     transition: background-color 0.3s ease;
   }
   
-  .hover-button:hover {
+  .nav-link:hover {
     background-color: #007d7a; 
   }
+
+  

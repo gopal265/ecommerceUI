@@ -19,75 +19,75 @@ const Men = ({show, CMenu, parentCallback}) => {
     
   return (
    <Fragment>
-       <div className={`w-[100%] h-screen bg-[#64646435] sticky top-0 ${CMenu} z-10 font1`}>
+       <div className="Menu">
        { transitions((styles, item) => item && <animated.div style={styles}>
-        <div className={`container max-w-[90%] w-[90%] mx-auto h-[480px] ${CMenu}  Mmenu bg-white `}
+        <div className="CMenu"
           onMouseEnter={() => parentCallback('block', true)} onMouseLeave={() => parentCallback('hidden', false)}
         >
-          <div className='grid grid-cols-5 px-8 py-4 cursor-pointer'>
+          <div className="sub-items">
 
-            <div className=" h-[418px]">
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Topwear</h1>
+            <div className=" sub-menu-items">
+              <h1 className="subitems">Topwear</h1>
               {Topwear.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 font-thin hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
 
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Indian&nbsp;&&nbsp;Festive&nbsp;Wear</h1>
+              <h1 className="subitems">Indian&nbsp;&&nbsp;Festive&nbsp;Wear</h1>
               {indian_festive.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
             </div>
-            <div className=" h-[418px] ">
-              <h1 className='text-[#ee5f73] text-sm  font-semibold py-1'>Bottomwear</h1>
+            <div className=" sub-menu-items ">
+              <h1 className="subitems">Bottomwear</h1>
               {bottomwear.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5  hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
 
               <hr className='py-1' />
 
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Innerwear&nbsp;&&nbsp;Sleepwear</h1>
+              <h1 className="subitems">Innerwear&nbsp;&&nbsp;Sleepwear</h1>
               {Innerwear_Sleepwear.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Plus&nbsp;Size</h1>
+              <h1 className="subitems">Plus&nbsp;Size</h1>
 
             </div>
 
-            <div className=" h-[418px] ">
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Footwear</h1>
+            <div className=" sub-menu-items ">
+              <h1 className="subitems">Footwear</h1>
               {Footwear.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Personal&nbsp;Care&nbsp;&&nbsp;Grooming</h1>
+              <h1 className="subitems">Personal&nbsp;Care&nbsp;&&nbsp;Grooming</h1>
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Sunglasses&nbsp;&&nbsp;Frames</h1>
+              <h1 className="subitems">Sunglasses&nbsp;&&nbsp;Frames</h1>
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Watches</h1>
+              <h1 className="subitems">Watches</h1>
             </div>
-            <div className=" h-[418px] ">
-            <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Sports&nbsp;&&nbsp;Active&nbsp;Wear</h1>
+            <div className=" sub-menu-items ">
+            <h1 className="subitems">Sports&nbsp;&&nbsp;Active&nbsp;Wear</h1>
               {Sports_Active_Wear.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Gadgets</h1>
+              <h1 className="subitems">Gadgets</h1>
               {Gadgets.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
 
             </div>
-            <div className=" h-[418px] ">
-            <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Fashion&nbsp;Accessories</h1>
+            <div className=" sub-menu-items">
+            <h1 className="subitems">Fashion&nbsp;Accessories</h1>
               {Fashion_Accessories.map((data) =>
-                <Link to="/products"><li className='litext list-none py-0.5 hover:font-semibold'onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
+                <Link to="/products"><li className="data"onClick={()=> parentCallback('hidden', false)}>{data.title}</li></Link>
               )}
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Bags&nbsp;&&nbsp;Backpacks</h1>
+              <h1 className="subitems">Bags&nbsp;&&nbsp;Backpacks</h1>
               <hr className='py-1' />
-              <h1 className='text-[#ee5f73] text-sm font-semibold py-1'>Luggages&nbsp;&&nbsp;Trolleys</h1>
+              <h1 className="subitems">Luggages&nbsp;&&nbsp;Trolleys</h1>
             </div>
 
           </div>
