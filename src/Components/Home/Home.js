@@ -6,7 +6,9 @@ import TrendBrands from './TrendBrands/TrendBrands'
 import Categories from './Categories/Categories'
 import NavBar from '../NavBar/NavBar'
 import ProfileHover from './ProfileHover/ProfileHover'
+import { Navigate, useNavigate } from 'react-router-dom'
 const Home = () => {
+   const navigate = useNavigate()
    const gifts = [
     'https://assets.myntassets.com/f_webp,w_196,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/cef0d9ed-5f6b-4fea-af6f-5a7431ea25c11691045352299-Makeup.png',
     'https://assets.myntassets.com/f_webp,w_192,c_limit,fl_progressive,dpr_2.0/assets/images/2023/8/3/38f1add0-b7b9-4764-8156-625b026049a41691045352290-Handbags.png',
@@ -45,7 +47,7 @@ const Home = () => {
          <div className='row'>
          {
          catgegories.map(cat =>(
-            <div className='col-md-2 col-sm-3 gift ' >
+            <div className='col-md-2 col-sm-3 gift ' onClick={()=> navigate('/products')} >
                <Categories img_url={cat} />
                </div>
          ))

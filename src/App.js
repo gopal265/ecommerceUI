@@ -8,10 +8,16 @@ import VerifyOtp from "./Components/Login\/VerifyOtp"
 import Home from './Components/Home/Home'
 import UpdateUser from './Components/Login/UpdateUser';
 import { useEffect } from 'react';
+<<<<<<< HEAD
 import Payment from './Components/Payment';
 
 
 
+=======
+import Products from './Components/Products/Products';
+import Wishlist from './Components/WishList/WishList';
+import Bag from './Components/Bag/Bag';
+>>>>>>> 1e9775eafee1fa7c160fffd6e488795dbc1c8155
 
 function App() {
   const {user} = useSelector(state => state.user)
@@ -26,10 +32,16 @@ function App() {
       <Route path='/registerUser' Component={Registeruser} />
       <Route path='/dashboard'  element={<Overview user={user} />} />
       <Route path='/updateUser' Component={UpdateUser} />
+<<<<<<< HEAD
       <Route path='/Payment' Component={Payment} />
       
       
      
+=======
+      <Route path='/products' Component={Products}/>
+      <Route path='/wishlist' Component={Wishlist} />
+      <Route path='/bag' Component={Bag} />
+>>>>>>> 1e9775eafee1fa7c160fffd6e488795dbc1c8155
       
 
       </Routes>

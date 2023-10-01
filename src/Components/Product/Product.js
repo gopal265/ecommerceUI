@@ -4,15 +4,21 @@ import './Product.css'
 // import { BiRupee } from 'react-icons/bi'
 // import { IoIosHeartEmpty } from 'react-icons/io'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { createwishlist } from '../../actions/order'
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 
-const Product = ({ pro}) => {
+const Product = ({ product}) => {
 
-    const product = {brand:"boohoo",title:"Mid Top block heels",sellingPrice:2004,mrp:5010,images:[{url:'https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/20924918/2022/11/28/a39c98cc-5142-444e-bacd-1e8791970cf31669631789366SandalsBoohooWomenHeelsBoohooWomenHeelsBoohooWomenSandalsBoo1.jpg'}],size:"EURO37"}
-    console.log(product.images)
+    // const product = {brand:"boohoo",title:"Mid Top block heels",sellingPrice:2004,mrp:5010,images:[{url:'https://assets.myntassets.com/f_webp,dpr_1.0,q_60,w_210,c_limit,fl_progressive/assets/images/20924918/2022/11/28/a39c98cc-5142-444e-bacd-1e8791970cf31669631789366SandalsBoohooWomenHeelsBoohooWomenHeelsBoohooWomenSandalsBoo1.jpg'}],size:"EURO37"}
+    const {user} = useSelector(state => state.user)
     const [display,setDisplay] = useState(false)
+    const dispatch = useDispatch()
+    const addtoWishList = ()=>{
+        dispatch(createwishlist({user: user._id,orderItems:[{product:product._id}]}))
+    }
     // let slideIndex = 1;
 
     // const currentSlide = (n) => {
@@ -80,12 +86,12 @@ const Product = ({ pro}) => {
     return (
         <>
             
-        { product.images[0].url && 
+        { product.images[0] && 
             
             <>
                 <div className='product-wrapper'>
-                    <div>
-                        <img src={product.images[0].url} />
+                    <div >
+                        <img src={product.images[0]} className='product-img'/>
                         </div>
                     <div className='visible-class pl-3'>
                         <div className='brand pt-2 pb-1'>{product.brand}</div>
@@ -99,7 +105,7 @@ const Product = ({ pro}) => {
                         </div> 
                         
                         <div className='hover-class'>
-                        <div className=' wishlist center full-width'><span><i class="fa-regular fa-heart"></i></span>Wishlist</div>
+                        <div className=' wishlist center full-width' onClick={addtoWishList}><span><i class="fa-regular fa-heart"></i></span>Wishlist</div>
                         <div className=' pl-3'>
                         
                         <div className='title pb-1'>Sizes : {product.size}</div>

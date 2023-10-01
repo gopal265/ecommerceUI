@@ -53,12 +53,12 @@ const NavBar = () => {
                         </div >
                         <ProfileHover display={displayProfile} />
 
-                        <div className='navbar-icon ' >
-                        <i class="fa-regular "></i>
+                        <div className='navbar-icon center-h' onClick={()=> navigate('/wishlist')} >
+                        <i class="fa-regular fa-heart"></i>
                         <p>WishList</p>
                         </div>
-                        <div className='navbar-icon c'>
-                        <span class="material">
+                        <div className='navbar-icon center-h' onClick={()=> navigate('/bag')}>
+                        <span class="material-symbols-outlined">
                             shopping_bag
                         </span> 
                         <p>Bag</p>
