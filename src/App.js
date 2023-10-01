@@ -8,7 +8,9 @@ import VerifyOtp from "./Components/Login\/VerifyOtp"
 import Home from './Components/Home/Home'
 import UpdateUser from './Components/Login/UpdateUser';
 import { useEffect } from 'react';
-
+import Products from './Components/Products/Products';
+import Wishlist from './Components/WishList/WishList';
+import Bag from './Components/Bag/Bag';
 
 function App() {
   const {user} = useSelector(state => state.user)
@@ -22,7 +24,9 @@ function App() {
       <Route path='/registerUser' Component={Registeruser} />
       <Route path='/dashboard'  element={<Overview user={user} />} />
       <Route path='/updateUser' Component={UpdateUser} />
-     
+      <Route path='/products' Component={Products}/>
+      <Route path='/wishlist' Component={Wishlist} />
+      <Route path='/bag' Component={Bag} />
       
 
       </Routes>
