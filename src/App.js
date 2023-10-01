@@ -17,6 +17,7 @@ function App() {
   return (
     <div className="App app-width">
       <BrowserRouter >
+      
       <Routes>
       <Route path='/' Component={Home} />
       <Route path='/login' Component={Login} />
