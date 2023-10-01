@@ -47,8 +47,8 @@ const NavBar = () => {
                     <form className="form-inline ">
                         <input className="form-control" type="search" placeholder="Search products" aria-label="Search" />
                         {/* <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> */}
-                        <div className='navbar-icon ' onClick={()=>setDisplayProfile(!displayProfile)} >
-                        <i class="fa-regular "></i>
+                        <div className='navbar-icon center-h' onClick={()=>setDisplayProfile(!displayProfile)} >
+                        <i class="fa-regular fa-user "></i>
                         <p>Profile</p>
                         </div >
                         <ProfileHover display={displayProfile} />

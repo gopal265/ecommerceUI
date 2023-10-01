@@ -4,13 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../actions/product'
 // import Loader from '../Loader/Loader'
 import ProductFilter from '../ProductFilter/ProductFilter'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Pagination from 'react-js-pagination'
 import "./Products.css"
+import GenderFilter from '../ProductFilter/GenderFilter'
+import CategoryFilter from '../ProductFilter/CategoryFilter'
+import ColorFilter from '../ProductFilter/ColorFilter'
 // import Footer from '../Footer/Footer'
 
 const Products = () => {
     const dispatch = useDispatch()
+    const location = useLocation()
     const { product, pro, loading, error, length } = useSelector(state =>state.allProducts)
     const [sortvalue, setsortvalue] = useState('Recommended')
     const options = ["Recommended","What`s New","Popularity","Price: High To Low","Price: Low To High","Customer Rating"]
@@ -136,40 +140,17 @@ const Products = () => {
     const [state1, setstate1] = useState(false)
 
     useEffect(() => {
-      
-        if (state1 === false) {
-           
-                dispatch(getAllProducts())
-            
-            setstate1(true)
-        }
-
-        // if (error) {
-        //     dispatch(clearErrors())
-        // }
-       
-
-        if (state === false) {
-            if (loading === false) {
-                if (window.scroll > 0) {
-                    document.documentElement.scrollTo = 0;
-                }
-                setstate(true)
-            }
-           
-        }
-     
-        
-    }, [dispatch, error, state, loading, state1]);
+      dispatch(getAllProducts())
+    }, [location]);
 
     return (
         <Fragment>
             
 
-            <div className="hidden 2xl:block xl:block lg:block font2 text-sm px-8 py-2"><span className='text-slate-400 font-light'>Home</span>
-                <span className='font-light text-slate-400 capitalize'>{window.location.pathname}</span> </div>
-            <div className="hidden 2xl:block xl:block lg:block font2 px-8 pb-2 "> <span className=" font1  text-sm capitalize">NO OF ITEMS</span>
-                <span className="text-slate-400 font-light">- { loading === false ? pro.length : '...'} items</span>  </div>
+            <div className=""><span className=''>Home</span>
+                <span className=''>{window.location.pathname}</span> </div>
+            <div className=""> <span className=" ">NO OF ITEMS</span>
+                <span className="">- { loading === false ? pro.length : '...'} items</span>  </div>
 
             {/* Filter__titile div *********************************** */}
             <div className="container-fluid">
@@ -207,9 +188,15 @@ const Products = () => {
             <div className='container-fluid'>
                <div className='row' >
                 <div className="col-md-auto">
-                    {
+                    <GenderFilter location={location}/>
+                    {    
                         loading === false &&
-                        <ProductFilter product={pro} />
+                        <div>
+                            <CategoryFilter product={pro} location={location} />
+                            <ColorFilter product={pro} location={location} />
+                            {/* <ProductFilter product={pro} location={location} /> */}
+
+                        </div>
                     }
 
                 </div>
