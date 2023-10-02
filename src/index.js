@@ -5,6 +5,7 @@ import App from './App';
 import { Provider } from 'react-redux';
 import store from './store/store';
 import Product from './Components/Product/Product';
+import PaymentPage from './Components/Payment/payment';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

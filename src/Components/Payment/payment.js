@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './payment.css'
+import { useNavigate } from 'react-router-dom';
 function PaymentPage() {
   const [amount, setAmount] = useState('--');
   const [MRP, setMRP] = useState('--');
   const [discount, setDiscount] = useState('--');
   const [itemCount, setItemCount] = useState('--');
+  const navigate = useNavigate()
 
   useEffect(() => {
     const amountValue = localStorage.getItem('amount');
@@ -85,9 +87,9 @@ function PaymentPage() {
             <div id="paymentDiv">
               <h4>Cash On Delivery</h4>
 
-              <a href="otp.html">
+              <div onClick={navigate('/paymentotp')}>
                 <div id="pay">PAY</div>
-              </a>
+              </div>
             </div>
           </div>
         </div>

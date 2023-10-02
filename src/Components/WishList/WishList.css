@@ -53,4 +53,6 @@
     background-color: white;
     color: rgb(30, 153, 219);
     border: 1px solid rgb(21, 145, 212);
+    min-width: max-content;
+    padding: 0px 10px;
 }

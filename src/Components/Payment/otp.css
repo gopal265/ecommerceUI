@@ -54,7 +54,7 @@ h2+p{
     color: black;
     font-size: 20px;
 }
-button{
+.otpbutton{
     width: 50%;
     height: 30px;
     margin-left:60px;

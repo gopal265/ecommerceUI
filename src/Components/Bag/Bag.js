@@ -104,6 +104,7 @@ function delbag(user, product) {
 }
 
 
+
 useEffect(() => {
     if (state2 === false) {
         if (!user) {

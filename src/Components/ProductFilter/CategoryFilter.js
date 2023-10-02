@@ -73,4 +73,4 @@ const CategoryFilter = ({product,location}) => {
   )
 }
 
-export default CategoryFilter
+export default React.memo(CategoryFilter)

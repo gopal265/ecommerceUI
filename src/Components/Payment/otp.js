@@ -1,7 +1,9 @@
 import React from 'react';
 import './otp.css'; // Import your CSS file
+import { useNavigate } from 'react-router-dom';
 
 function OTPVerification() {
+  const navigate = useNavigate()
   return (
     <div id="otpDiv">
       <img
@@ -19,8 +21,8 @@ function OTPVerification() {
         <input id="otp3" type="tel" maxLength="1" />
         <input id="otp4" type="tel" maxLength="1" />
       </div>
-      <button id="checkotp">
-        <a href="end.html">CONFIRM</a>
+      <button id="checkotp" onClick={()=>navigate('/paymentend')}>
+        <p >CONFIRM</p>
       </button>
       <div id="checkDiv">
         <h4>RESEND OTP</h4>

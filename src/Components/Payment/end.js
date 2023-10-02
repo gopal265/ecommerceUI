@@ -1,23 +1,13 @@
 import React, { useEffect } from 'react';
 import './end.css'; // Import your CSS file
-import confetti from '../payment/confetti'; // Import your confetti library (make sure it's installed)
+import { useNavigate } from 'react-router-dom';
+// import confetti from './confetti'; // Import your confetti library (make sure it's installed)
 
 function ConfirmPayment() {
+
+  const navigate = useNavigate()
   useEffect(() => {
-    const start = () => {
-      setTimeout(function () {
-        confetti.start();
-      }, 1000);
-    };
-
-    const stop = () => {
-      setTimeout(function () {
-        confetti.stop();
-      }, 10000);
-    };
-
-    start();
-    stop();
+  
   }, []);
 
   return (
@@ -32,9 +22,9 @@ function ConfirmPayment() {
           You will soon receive a mail/SMS regarding confirmation of your recent order
         </h3>
       </div>
-      <a href="../Landingpage/index.html">
+      <div onClick={()=>navigate('/')}>
         <div id="move">GO TO HOME</div>
-      </a>
+      </div>
     </div>
   );
 }

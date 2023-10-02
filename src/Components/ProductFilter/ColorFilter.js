@@ -38,7 +38,7 @@ const ColorFilter = ({product}) => {
   return (
     <div>
       <ul className= 'overflow-hidden relative '>
-              <h1 className='font1 text-base font-semibold mb-2'>COLOR</h1>
+              <h5 className='font1 text-base font-semibold mb-2'>COLOR</h5>
             {
               colors && [...new Set(colors)].map((e)=>
               <li className='items-center '>

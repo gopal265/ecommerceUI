@@ -3,11 +3,10 @@ import './Product.css'
 // import { AiFillStar } from 'react-icons/ai'
 // import { BiRupee } from 'react-icons/bi'
 // import { IoIosHeartEmpty } from 'react-icons/io'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { createwishlist } from '../../actions/order'
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
-
 
 
 const Product = ({ product}) => {
@@ -16,6 +15,7 @@ const Product = ({ product}) => {
     const {user} = useSelector(state => state.user)
     const [display,setDisplay] = useState(false)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const addtoWishList = ()=>{
         dispatch(createwishlist({user: user._id,orderItems:[{product:product._id}]}))
     }
@@ -89,7 +89,7 @@ const Product = ({ product}) => {
         { product.images[0] && 
             
             <>
-                <div className='product-wrapper'>
+                <div className='product-wrapper' onClick={()=> navigate(`/products/${product._id}`)}>
                     <div >
                         <img src={product.images[0]} className='product-img'/>
                         </div>

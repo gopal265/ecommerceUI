@@ -12,22 +12,41 @@
     font-weight: 600;
 }
 
-.nav-link:hover {
-    color: #007BFF; /* Change the text color on hover */
-  }
-
 .navbar{
     padding: 0px 50px;
 }
-.navbar-brand:hover {
-    background-color: #0db7af;
-    color: white;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-  }
-  
-  .nav-link:hover {
-    background-color: #007d7a; 
-  }
+
+.navbar-searchbar{
+  padding-right: 20px;
+}
+.navbar-searchbar input{
+  border: 1px solid rgb(192, 185, 185);
+  font-size: 16px;
+  padding: 5px;
+  width: 300px;
+  /* max-width: fit-content; */
+  outline: none;
+}
+
+.navbar-icon{
+  cursor: pointer;
+}
+
+.hidden{
+  display: none;
+}
+.block{
+  display: block;
+}
+.navbar-men{
+  position:absolute;
+  left: 50px;
+  top:60px;
+  z-index: 9;
+}
+
+/* div{
+  border: 1px solid black;
+} */
 
   

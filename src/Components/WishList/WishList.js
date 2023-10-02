@@ -102,7 +102,7 @@ const Wishlist = () => {
                                     {wishlist && wishlist.orderItems.map((pro) => (
                                         <div className='col-md-3 p-3 center-h'>
                                             <div className='wish-delete center' onClick={()=>delwish(user._id, pro.product._id)}><i class="fa-solid fa-xmark"></i></div>
-                                            <div className='pb-3 wish-product-wrapper'>
+                                            <div className='pb-3 wish-product-wrapper full-width'>
                                             <Product product={pro.product} key={pro._id} />
                                             </div>
                                             <div className='wishtobag full-width center'>
