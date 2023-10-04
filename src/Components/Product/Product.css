@@ -1,10 +1,13 @@
 .product-wrapper{
     width: 100%;
     position: relative;
+    height: 100%;
+    border: 1px solid rgb(214, 214, 214);
    
 }
 .product-img{
   width: 100%;
+
 }
 
 .prices div{
@@ -93,6 +96,9 @@
 .title{
   color: rgb(185, 182, 182);
   font-size: 14px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
 }
 .sellingprice{
   font-weight: 900;
@@ -111,4 +117,13 @@
 
 .wishlist{
   border: 1px solid gray;
+  padding: 5px;
+  font-size: 18px;
+  margin-bottom: 32px;
+  background-color: white;
+ 
+}
+.productadded{
+  background-color: #fb56c1 !important;
+  color: white !important;
 }

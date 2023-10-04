@@ -3,18 +3,20 @@ import Product from '../Product/Product'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllProducts } from '../../actions/product'
 // import Loader from '../Loader/Loader'
-import ProductFilter from '../ProductFilter/ProductFilter'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Pagination from 'react-js-pagination'
 import "./Products.css"
 import GenderFilter from '../ProductFilter/GenderFilter'
 import CategoryFilter from '../ProductFilter/CategoryFilter'
 import ColorFilter from '../ProductFilter/ColorFilter'
+import NavBar from '../NavBar/NavBar'
+import BrandFilter from '../ProductFilter/BrandFilter'
 // import Footer from '../Footer/Footer'
 
 const Products = () => {
     const dispatch = useDispatch()
     const location = useLocation()
+    const { wishlist } = useSelector(state => state.wishlist_data)
     const { product, pro, loading, error, length } = useSelector(state =>state.allProducts)
     const [sortvalue, setsortvalue] = useState('Recommended')
     const options = ["Recommended","What`s New","Popularity","Price: High To Low","Price: Low To High","Customer Rating"]
@@ -141,16 +143,17 @@ const Products = () => {
 
     useEffect(() => {
       dispatch(getAllProducts())
+  
     }, [location]);
 
     return (
         <Fragment>
             
-
+            <NavBar />
             <div className=""><span className=''>Home</span>
                 <span className=''>{window.location.pathname}</span> </div>
             <div className=""> <span className=" ">NO OF ITEMS</span>
-                <span className="">- { loading === false ? pro.length : '...'} items</span>  </div>
+                <span className="">- { loading === false ? product.length : '...'} items</span>  </div>
 
             {/* Filter__titile div *********************************** */}
             <div className="container-fluid">
@@ -193,7 +196,10 @@ const Products = () => {
                         loading === false &&
                         <div>
                             <CategoryFilter product={pro} location={location} />
+                            <BrandFilter product={pro} location={location} />
                             <ColorFilter product={pro} location={location} />
+                         
+                            {/* <PriceFilter /> */}
                             {/* <ProductFilter product={pro} location={location} /> */}
 
                         </div>
@@ -214,7 +220,7 @@ const Products = () => {
                                     <div className='container-fluid'>
                                         <div className='row'>
                                         {product && product.map((pro) => (
-                                        <div className='col-md-3'>
+                                        <div className='col-md-3 pb-4'>
                                               <Product product={pro} key={pro._id} />
                                         </div>
                                           ))}

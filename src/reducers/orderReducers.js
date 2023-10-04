@@ -20,7 +20,13 @@ REQUEST_UPDATE_QTY_BAG,
    SUCCESS_DELETE_WISH,
    REQUEST_DELETE_WISH,
       FAIL_DELETE_WISH,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    REQUEST_PLACE_ORDER,
+    SUCCESS_PLACE_ORDER,
+    FAIL_PLACE_ORDER,
+    REQUEST_GET_ORDER,
+    SUCCESS_GET_ORDER,
+    FAIL_GET_ORDER
 } from '../constants/orderConstants'
 
 export const create_wishlist_reducer = (state = {wishlist:{}}, action) =>{
@@ -49,7 +55,7 @@ export const create_wishlist_reducer = (state = {wishlist:{}}, action) =>{
     }
 }
 
-export const get_wishlist_reducer = (state = {wishlist:{}}, action) =>{
+export const get_wishlist_reducer = (state = {wishlist:[]}, action) =>{
     switch (action.type) {
         case REQUEST_GET_WISHLIST:
             return {
@@ -200,6 +206,69 @@ export const delete_wish_reducer = (state = {deletewish:{}}, action) =>{
                         ...state,
                         error: null
                 };
+        default:
+            return state;
+    }
+}
+export const sendotp_reducer = (state ={status:""},action) =>{
+    switch(action.type){
+        case "loading":
+            return{
+                loading:true
+            }
+        case "success":
+            return{
+                status : action.payload,
+                loading:false
+            }
+        case "fail":
+            return {
+                status: action.payload,
+                loading:false
+            }
+        default:
+            return state
+    }
+}
+export const order_reducer = (state={orders:[]},action) =>{
+
+    switch(action.type){
+        case REQUEST_PLACE_ORDER :
+            return{
+                loading : true,
+            }
+        case SUCCESS_PLACE_ORDER:
+            return{
+                loading:false,
+                orders : action.payload
+            }
+        case FAIL_PLACE_ORDER:{
+            return{
+                loading:false,
+                orders:action.payload
+            }
+        }
+    }
+}
+export const get_order_reducer = (state={orders:[]},action) =>{
+
+    switch(action.type){
+        case REQUEST_GET_ORDER :
+            return{
+                loading : true,
+            }
+        case SUCCESS_GET_ORDER:
+            return{
+                loading:false,
+                orders : action.payload
+            }
+        case FAIL_GET_ORDER:{
+            return{
+                loading:false,
+                orders:action.payload
+            }
+
+        }
         default:
             return state;
     }

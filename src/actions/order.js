@@ -21,9 +21,26 @@ REQUEST_UPDATE_QTY_BAG,
    SUCCESS_DELETE_WISH,
    REQUEST_DELETE_WISH,
       FAIL_DELETE_WISH,
-    CLEAR_ERRORS
+    CLEAR_ERRORS,
+    REQUEST_PLACE_ORDER,
+    SUCCESS_PLACE_ORDER,
+    FAIL_PLACE_ORDER,
+    REQUEST_GET_ORDER,
+    SUCCESS_GET_ORDER,
+    FAIL_GET_ORDER
 } from '../constants/orderConstants'
 import * as api from '../api/order'
+
+export const sendOTp = () => async(dispatch) =>{
+ try {
+    dispatch({type:"loading"})
+    const email = localStorage.getItem('email').replace(/"/g, '')
+    const {data} = api.sendOTp({email:email})
+    dispatch({type:'success',payload:'verified'})
+ } catch (error) {
+    dispatch({type:'fail',payload:'wrong'})
+ }
+}
 export const createwishlist = (option) => async (dispatch) => {
     console.log(option)
     try {
@@ -122,4 +139,24 @@ export const clearErrors = () => async (dispatch) => {
     dispatch({
         type: CLEAR_ERRORS
     })
+}
+
+export const placeOrder = (id,data) => async(dispatch) =>{
+    try {
+        dispatch({type:REQUEST_PLACE_ORDER})
+        const {response} = await api.placeOrder(id,data)
+        dispatch({type:SUCCESS_PLACE_ORDER,payload:response.orderItems})
+    } catch (error) {
+        dispatch({type:FAIL_PLACE_ORDER,payload:error})
+    }
+}
+export const getOrders = (id) => async(dispatch) =>{
+    try {
+        dispatch({type:REQUEST_GET_ORDER})
+        const {data} = await api.getOrders(id)
+        dispatch({type:SUCCESS_GET_ORDER,payload:data.orderItems})
+
+    } catch (error) {
+        dispatch({type:FAIL_GET_ORDER,payload:error})
+    }
 }

@@ -17,7 +17,7 @@ const ProfileHover = ({display}) => {
       }
       <hr className='profile-line' />
       <div>
-        <div>Orders</div>
+        <div onClick={()=> navigate('/orders')}>Orders</div>
         <div>WishList</div>
         <div>Gift Cards</div>
       </div>

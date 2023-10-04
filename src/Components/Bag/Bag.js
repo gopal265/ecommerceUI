@@ -49,15 +49,7 @@ if (bagloading === false && state1 === false && bag !== null ) {
     
 }
 
-// function addclass() {
-//     let allli = document.querySelectorAll(`.vis`)
 
-//     for (let i = 0; i < allli.length; i++) {
-//         console.log(allli[i])
-//         elementClass(allli[i]).toggle('hi')
-//         // elementClass(allli[i]).add('vis')
-//       }
-// }
 
 const [qtyvalue,setQtyvalue] = useState(1)
 const [id,setid] = useState('')
@@ -80,14 +72,14 @@ function updateqty(e) {
 const [state3, setstate3] =useState(false)
 const {deletebag:baggggg} = useSelector(state=>state.deletebag)
 
-if (state3=== false && baggggg === true ) {
+if (state3=== false && baggggg === true && user!==null) {
     dispatch(getbag(user._id))
     setstate1(false)
     setstate3(true)
 }
 
 function place() {
-    navigate('/address/bag')
+    navigate('/address/bag',{state:{mrp:mrp,sp:sp,ds:ds,items:bag.orderItems.length}})
 }
 
 
@@ -107,7 +99,7 @@ function delbag(user, product) {
 
 useEffect(() => {
     if (state2 === false) {
-        if (!user) {
+        if (user !==null) {
             dispatch(getuser())
         }
         setstate2(true)
@@ -115,7 +107,7 @@ useEffect(() => {
   
     if (state === false) {
         if (userloading === false) {
-            if (isAuthentication === false) {
+            if (isAuthentication === false & user!==null) {
                 // Alert.info('Log in to access BAG')
                 setstate(true)
                 
@@ -131,16 +123,16 @@ useEffect(() => {
 
     return (
         <Fragment>
-            { isAuthentication === true ?
+            { isAuthentication === true && user !== null?
                 
                 <Fragment>{
                     bagloading === false &&
 
             <Fragment>
-            {
+            {    
                 (bag !== null  && bag.orderItems.length > 0) ?
                 <Fragment >
-                <div className='container-fluid'>
+                <div className='container-fluid bag-nav'>
                     <div className='row pt-3 pb-3'>
                         <div className='col-md-2'>ShopCart</div>
                         <div className='col-md-8 center'>
@@ -155,9 +147,9 @@ useEffect(() => {
 
                 </div>
         {/* ***************************************************************************************************************** */}
-                <div className='container'>
+                <div className='container pt-4'>
                     <div className='row'>
-                <div className="col-md-7">
+                <div className="col-md-7 bag-border">
                     <div className=''>
                         <div className='bag-head'>
                             Available Offers</div>
@@ -203,18 +195,36 @@ useEffect(() => {
                     </div>
                 </div>
         
-                <div className="col-span-5 mx-2 border-l-[0px] border-slate-200 pl-4 text-[14px] 2xl:ml-4 xl:ml-4 lg:ml-4 2xl:border-l-[1px] xl:border-l-[1px] lg:border-l-[1px]">
+                <div className="col-md-4 pl-3 pr-3">
                      <div className='mt-2 '>
-                         <h1 className='font1 text-[#535766] '>PRICE DETAILS<span className='text-[12px]'>&nbsp;({bagloading === false && bag.orderItems.length} items)</span></h1>
-                         <div className='text-[#535766] relative mt-2'>Total MRP<span className='absolute right-0'>&#8377;&nbsp;{mrp}</span></div>
-                         <div className='text-[#535766] relative mt-2'>Discount on MRP<span className='absolute right-0 text-[#0db7af]'>-&#8377;&nbsp;{Math.round(ds)}</span></div>
-                         <div className='text-[#535766] relative mt-2'> Coupon Discount<span className='absolute right-0 text-[#ff3f6c]'>Apply Coupon</span></div>
-                         <div className='text-[#535766] relative mt-2 mb-2'> Convenience Fee<span className='absolute right-0 '><span className='line-through'>-&#8377;&nbsp;99</span> <span className='no-underline text-[#0db7af]'>FREE</span> </span></div>
-                         <div className='py-2 border-t-[1px] border-slate-200 bg-white 2xl:relative xl:relative lg:relative'>
-                            <div className='relative font1 text-base'>Total Amount<span className='absolute right-0'>&#8377;&nbsp;{Math.round(sp)}</span></div>
-                            
-                            <button className='mt-2 bg-[#ff3f6c] text-center w-full py-3 font1 text-bold text-white' onClick={place} > PLACE ORDER </button>
+                         <h5 className=' '>PRICE DETAILS<span className=''> ({bagloading === false && bag.orderItems.length} items)</span></h5>
+                         <div className='center-v-sb pb-2'>
+                         <div className=''>Total MRP</div>
+                         <div className=''>&#8377;&nbsp;{mrp}</div>
                          </div>
+
+                         <div className='center-v-sb pb-2'>
+                         <div className=' mt-2'>Discount on MRP</div>
+                         <div className=''>&#8377;&nbsp;{Math.round(ds)}</div>
+                         </div>
+
+                         <div className='center-v-sb pb-2'>
+                         <div className=' mt-2 mb-2'> Convenience Fee</div>
+                         <div className=''><span className=''>&#8377;&nbsp;99</span> <span className=''>FREE</span> </div>
+
+                         </div>
+
+                        <hr />
+
+                         <div className='center-v-sb pb-4 pt-2'>
+                         <div className=''>Total Amount</div>
+                         <span className=''>&#8377;&nbsp;{Math.round(sp)}</span>
+                         </div>
+                        <div className='center'>
+                        <button className='order-button' onClick={place} > PLACE ORDER </button>
+
+                        </div>
+                       
                     </div>   
         
                 </div>

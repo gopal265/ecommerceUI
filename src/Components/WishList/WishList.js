@@ -56,7 +56,7 @@ const Wishlist = () => {
     useEffect(() => {
 
         if (state1 === false) {
-            if (!user) {
+            if (user !==null) {
                 dispatch(getuser())
             }
             setstate1(true)
@@ -87,10 +87,10 @@ const Wishlist = () => {
             <NavBar />
         {
            
-            isAuthentication === true ?
+            isAuthentication === true && user!==null?
 
             <Fragment>{
-                loading === false &&
+                loading === false &&  
                 <Fragment>
                     {(wishlist !== null && wishlist.orderItems.length > 0)  ?
                         <div className='wish-wrapper container-fluid'>
@@ -103,7 +103,7 @@ const Wishlist = () => {
                                         <div className='col-md-3 p-3 center-h'>
                                             <div className='wish-delete center' onClick={()=>delwish(user._id, pro.product._id)}><i class="fa-solid fa-xmark"></i></div>
                                             <div className='pb-3 wish-product-wrapper full-width'>
-                                            <Product product={pro.product} key={pro._id} />
+                                            <Product product={pro.product} key={pro._id} inWish={true} />
                                             </div>
                                             <div className='wishtobag full-width center'>
                                             <div className=''onClick={()=>movetobag(user._id, pro.product._id)}>MOVE TO BAG</div>

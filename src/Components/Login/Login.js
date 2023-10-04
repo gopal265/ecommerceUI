@@ -15,6 +15,7 @@ const Login = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const {loading, message, user,error} = useSelector(state => state.Registeruser)
+  const {user :loginuser} = useSelector(state => state.user)
 
   let par = document.getElementById('error')
 
@@ -39,7 +40,8 @@ const Login = () => {
 
   useEffect(() => {
     
-     if (message && user &&  !login) {
+     if (message && user !==null &&  !login ) {
+      
     navigate('/verifyotp')
   }
     if(message === "Successfully Loggedin" && user && login){

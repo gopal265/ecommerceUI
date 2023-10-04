@@ -36,19 +36,19 @@ const CategoryFilter = ({product,location}) => {
             let newurl = url.includes(`&category=${newtext}`) ? url.replace(`&category=${newtext}`,'') : null
             let newurl2 = url.replace(`?category=${newtext}`,'')
             let newurlsuccess =  (newurl === null ? newurl2 : newurl)
+            if(newurlsuccess[0] === "&"){
+              newurlsuccess = newurlsuccess.replace('&','?')
+            }
             navigate(newurlsuccess)
-            // window.location = newurlsuccess 
            }else{
              url += `&category=${e}`
              navigate(url)
-            //  window.location = url
            }
       
         }else{
       
           url += `?category=${e}`
           navigate(url)
-        //   window.location = url
       
         }
       
@@ -61,8 +61,8 @@ const CategoryFilter = ({product,location}) => {
       <h5 className=''>CATEGORIES</h5>
             {
               category && [...new Set(category)].map((e)=>
-              <li className=''  >
-              <input type="checkbox" name="categories" value={`${e}`} id={`id${e}`} className='mb-2 accent-pink-500' checked={selectedCategories.includes(e)} onChange={handleCheck} />
+              <li className='' key={e} >
+              <input type="checkbox" name="categories" value={`${e}`} id={`id${e}`} className='mb-2 accent-pink-500' checked={location.search.includes(e)} onChange={handleCheck} />
               <label className='font1 text-sm ml-2 mr-4 mb-2'>{e}<span className='text-xs font-serif font-normal text-slate-400'> ({category.filter((f)=>f === e).length})</span> </label>
               </li>
               )
