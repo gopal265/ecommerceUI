@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './Components/Login/Login';
 import { BrowserRouter,Routes,Route,Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Overview from "./Components/Login/DashBoard/OverView"
 import Registeruser from "./Components/Login/RegisterUser"
 import VerifyOtp from "./Components/Login\/VerifyOtp"
@@ -16,10 +16,11 @@ import AddressCheckout from './Components/Payment/address';
 import PaymentPage from './Components/Payment/payment';
 import ConfirmPayment from "./Components/Payment/end"
 import OTPVerification from './Components/Payment/otp';
-//>>>>>>> 1e9775eafee1fa7c160fffd6e488795dbc1c8155
-
+import { SUCCESS_LOGOUT } from './constants/userConstants';
+import Orders from './Components/Orders/Orders';
 function App() {
   const {user} = useSelector(state => state.user)
+  
   return (
     <div className="App app-width">
       <BrowserRouter >
@@ -39,6 +40,7 @@ function App() {
       <Route path='/payment' Component={PaymentPage} />
       <Route path='/paymentotp' Component={OTPVerification} />
       <Route path='/paymentend' Component={ConfirmPayment} />
+      <Route path='/orders' Component={Orders} />
       
 
       </Routes>

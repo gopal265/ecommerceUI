@@ -11,7 +11,7 @@ const Men = () => {
     
   return (
    <Fragment>
-       <div className="container-fluid men-wrapper">
+       <div className="container-fluid wrapper">
         <div className="row">
       
             <div className="col-md">

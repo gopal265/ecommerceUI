@@ -88,16 +88,20 @@ const Address = () => {
         (userloading === false) &&
 
         <Fragment >
-          <div className=''>
-            <div className=''>
-              <span className="">BAG</span> ----------&nbsp;
-              <span className="">ADDRESS</span> ---------- &nbsp;
-              <span className="">PAYMENT</span>
-            </div>
-            <span className=' '>
-              <span className=' '>100% SECURE</span>
-            </span>
-          </div>
+          <div className='container-fluid bag-nav'>
+                    <div className='row pt-3 pb-3'>
+                        <div className='col-md-2'>ShopCart</div>
+                        <div className='col-md-8 center'>
+                        <span className="">BAG</span> ----------&nbsp;
+                        <span className="">ADDRESS</span> ---------- &nbsp;
+                        <span className="">PAYMENT</span>
+                     </div>
+                     <div className='col-md-2'>
+                     <span className=''>100% SECURE</span> 
+                   </div>
+                    </div>
+
+                </div>
 
           <div className=' '>
             <div className="col-span-8">

@@ -1,113 +1,98 @@
 import React, { useState, useEffect } from 'react';
 import './payment.css'
-import { useNavigate } from 'react-router-dom';
+import {useDispatch,useSelector} from "react-redux"
+import { useLocation, useNavigate } from 'react-router-dom';
+import { placeOrder } from '../../actions/order';
 function PaymentPage() {
-  const [amount, setAmount] = useState('--');
-  const [MRP, setMRP] = useState('--');
-  const [discount, setDiscount] = useState('--');
-  const [itemCount, setItemCount] = useState('--');
+  
+  const location  = useLocation()
+  const state = location.state
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const {bag, loading:bagloading} = useSelector(state => state.bag_data)
+  const {user} = useSelector(state => state.user)
 
-  useEffect(() => {
-    const amountValue = localStorage.getItem('amount');
-    setAmount(amountValue);
+  const [payment,setPayment] = useState('')
+  const orderItems = bag.orderItems.map(item => {return  {orderItem: item.product._id,qty :item.qty,paymentInfo:payment,status:"Paid"}}  )
 
-    const MRPValue = localStorage.getItem('MRP');
-    setMRP(MRPValue);
-
-    const discountValue = localStorage.getItem('discount');
-    setDiscount(discountValue);
-
-    const itemCountValue = localStorage.getItem('itemcount');
-    setItemCount(itemCountValue);
-  }, []);
+   
+  const handlePay  = ()=>{
+    if(payment === ''){
+      return
+    }
+    let data = {
+      orderItems :orderItems
+    }
+    dispatch(placeOrder(user._id,data))
+    navigate('/paymentend')
+  }
 
   return (
     <div>
-      <div id="navbar">
-        <img id="logo" src="https://bit.ly/3LDsXgz" alt="" />
+       <div className='container-fluid bag-nav'>
+                    <div className='row pt-3 pb-3'>
+                        <div className='col-md-2'>ShopCart</div>
+                        <div className='col-md-8 center'>
+                        <span className="">BAG</span> ----------&nbsp;
+                        <span className="">ADDRESS</span> ---------- &nbsp;
+                        <span className="">PAYMENT</span>
+                     </div>
+                     <div className='col-md-2'>
+                     <span className=''>100% SECURE</span> 
+                   </div>
+                    </div>
 
-        <div id="nav2">
-          <h5 id="first">BAG</h5>
-          <div className="line"></div>
-          <h5 id="second">ADDRESS</h5>
-          <div className="line"></div>
-          <h5>PAYMENT</h5>
-        </div>
-        <div id="nav3">
-          <img
-            src="https://constant.myntassets.com/checkout/assets/img/sprite-secure.png"
-            alt=""
-          />
-          <p>
-            100 % <b>SECURE</b>
-          </p>
-        </div>
-      </div>
+                </div>
       <div id="cart">
         <div id="main1">
-          <div>
-            <h4>Bank Offer</h4>
-            <p>
-              10% Instant Discount with Standard Chartered Credit & Debit cards
-              on a min spend of Rs 3,000. TCA
-            </p>
-            <p>
-              Show More <i className="fa-solid fa-angle-down"></i>
-            </p>
-          </div>
+        
           <h4>Choose Payment Mode</h4>
           <div id="payment">
             <div id="mode">
-              <div>
-                <i className="fa-brands fa-amazon-pay"></i>
+              <div onClick={()=>setPayment("Cash on Delivery")} className={`${payment.includes('Cash') ? "modeselect" : ""} `}>
+                <i className="fa-brands fa-amazon-pay" ></i>
                 <h5>Cash On Delivery (Cash/Card/UPI)</h5>
               </div>
-              <div id="card">
-                <i className="fa-solid fa-credit-card"></i>
+              <div id="card" onClick={()=> setPayment("Card")} className={`${payment.includes('Card') ? "modeselect" : ""} `}>
+                <i className="fa-solid fa-credit-card" ></i>
                 <h5>Credit/Debit Card</h5>
               </div>
-              <div>
-                <i className="fa-brands fa-cc-amazon-pay"></i>
+              <div onClick={()=>setPayment('UPI')} className={`${payment.includes('UPI') ? "modeselect" : ""} `}>
+                <i className="fa-brands fa-cc-amazon-pay" ></i>
                 <h5>PhonePe/Google Pay/BHIM UPI</h5>
               </div>
-              <div>
-                <i className="fa-solid fa-wallet"></i>
-                <h5>Paytm/Payzapp/Wallets</h5>
-              </div>
-              <div>
-                <i className="fa-solid fa-building-columns"></i>
+              <div onClick={()=> setPayment("Net Banking")} className={`${payment.includes('Net') ? "modeselect" : ""} `}>
+                <i className="fa-solid fa-building-columns" ></i>
                 <h5>Net Banking</h5>
               </div>
-              <div>
-                <i className="fa-solid fa-money-check-dollar"></i>
+              <div onClick={()=> setPayment("EMI")} className={`${payment.includes('EMI') ? "modeselect" : ""} `}>
+                <i className="fa-solid fa-money-check-dollar" ></i>
                 <h5>EMI/Pay Later</h5>
               </div>
             </div>
-            <div id="paymentDiv">
-              <h4>Cash On Delivery</h4>
+            <div className='pay center'>
 
-              <div onClick={navigate('/paymentotp')}>
-                <div id="pay">PAY</div>
+              <div onClick={handlePay}>
+                <button className='btn pay-button' >PAY</button>
               </div>
             </div>
           </div>
         </div>
 
         <div className="orderbox">
-          <div className="pricedets">PRICE DETAILS ({itemCount} Items)</div>
+          <div className="pricedets">PRICE DETAILS ({state.items} Items)</div>
           <div className="total">
             <span>Total MRP</span>
-            <span className="totalprice">{MRP}</span>
+            <span className="totalprice">Rs. {Math.round(state.mrp)}</span>
           </div>
           <div className="discount">
             <span>Discount on MRP</span>
-            <span className="filldiscount">- {discount}</span>
+            <span className="filldiscount">Rs. {Math.round(state.ds)}</span>
           </div>
 
           <div className="amount">
             <span>Total Amount</span>
-            <span className="amount_pay">{amount}</span>
+            <span className="amount_pay">Rs. {Math.round(state.sp)}</span>
           </div>
         </div>
       </div>

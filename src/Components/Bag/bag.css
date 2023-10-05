@@ -1,9 +1,8 @@
-.he0{
-    display: block!important;
+.bag-nav{
+    border-bottom: 1px solid rgba(160, 151, 151,0.4);
 }
-
-.hi{
-    display: none;
+.bag-border{
+    border-right: 1px solid rgba(160, 151, 151,0.4);
 }
 .bag-head{
     font-size: 15px;
@@ -57,4 +56,12 @@
     top:20px;
     right: 20px;
     font-size: 20px;
+}
+
+.order-button{
+    width: 80%;
+    padding: 10px 0px;
+    color: white;
+    background-color: rgb(238, 62, 144);
+    border: none;
 }

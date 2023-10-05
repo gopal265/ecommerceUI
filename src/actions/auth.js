@@ -134,15 +134,15 @@ export const updateUser = (userdata) => async (dispatch) => {
     }
 }
 
-export const updatedetailsuser = (userdata, id) => async (dispatch) => {
+export const updatedetailsuser = (userdata) => async (dispatch) => {
    
     try {
 
         dispatch({ type: REQUEST_UPDATE_DETAILS_USER })
         
-        const config = { headers: { "Content-Type": "application/json" } }
+        const email = localStorage.getItem('email').replace(/"/g,'')
 
-        const { data } = await axios.put(`/api/v1/user/${id}`, userdata,config )
+        const { data } = await api.updateUserDetails(email,userdata)
 
         dispatch({ type: SUCCESS_UPDATE_DETAILS_USER, payload: data.success })
 

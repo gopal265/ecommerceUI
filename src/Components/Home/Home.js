@@ -27,21 +27,25 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-     <HomeCarousel />
+      <div  onClick={()=> navigate('/products')} >
+      <HomeCarousel />
+      </div>
+
      <h2 className='home-heading'>Medal Worthy Brands</h2>
 
      <div className='container-fluid'> 
         <div className='row'>
            { gifts.map( gift =>(
-            <div className='col-sm gift'>
+            <div className='col-sm gift'  onClick={()=> navigate('/products')} >
                 <HomeGit img_url={gift} />
                 </div>
 
            ))}
         </div>
         <h2 className='home-heading'>Trending Global Brands</h2>
-
-        <TrendBrands />
+      <div onClick={()=> navigate('/products')}>
+      <TrendBrands    />
+      </div>
         <h2 className='home-heading'>Shop By Categories</h2>
         <div className='container-fluid'>
          <div className='row'>

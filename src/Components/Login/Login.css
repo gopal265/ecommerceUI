@@ -42,3 +42,7 @@
 .login-help{
     color: rgb(12, 188, 219);
 }
+.otp-verify{
+    width: 100px;
+    height: 100px;
+}

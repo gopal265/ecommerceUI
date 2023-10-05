@@ -86,9 +86,7 @@ const NavBar = () => {
                             <div className="nav-link " >Kids</div>
                         </li>
 
-                        <li className="nav-item">
-                            <div className="nav-link " >Home & Living</div>
-                        </li>
+                   
 
                         <li className="nav-item" onMouseEnter={() => (setMenu4('block'))} onMouseLeave={() => (setMenu4('hidden'))}>
                             <div className="nav-link " >Beauty</div>

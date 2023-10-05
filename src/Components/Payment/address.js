@@ -1,82 +1,111 @@
-import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from React Router
+import React, { Fragment, useState } from 'react';
+import { set } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import Link from React Router
+import AddAddress from './AddAddress';
+import EditAddress from './EditAddress';
+import "./address.css"
 
-class AddressCheckout extends React.Component {
-  render() {
+const AddressCheckout = () =>{
+   const {user,loading} = useSelector(state => state.user)
+   const [edit,setEdit] = useState(false)
+   const [add,setAdd] = useState(false)
+   const location = useLocation()
+   const state = location.state
+   const navigate = useNavigate()
+   const date = new Date()
     return (
       <Fragment>
-        {/* Include your NavBar component here */}
-        <div>
-          <div id="navbar">
-            <img
-              id="logo"
-              src="https://bit.ly/3LDsXgz"
-              alt="logo"
-              onClick={this.handleLogoClick}
-            />
-            <div id="div2">
-              <h5 onClick={this.handleFirstClick}>BAG</h5>
-              <div className="line"></div>
-              <h5>ADDRESS</h5>
-              <div className="line"></div>
-              <h5 onClick={this.handleThirdClick}>PAYMENT</h5>
-            </div>
-            <div id="div3">
-              <img
-                src="https://constant.myntassets.com/checkout/assets/img/sprite-secure.png"
-                alt=""
-              />
-              <p>
-                100 % <b>SECURE</b>
-              </p>
-            </div>
-          </div>
-          <div id="cart">
-            <div id="div">
-              <div>
+      
+        <div className='container-fluid bag-nav'>
+                    <div className='row pt-3 pb-3'>
+                        <div className='col-md-2'>ShopCart</div>
+                        <div className='col-md-8 center'>
+                        <span className="">BAG</span> ----------&nbsp;
+                        <span className="">ADDRESS</span> ---------- &nbsp;
+                        <span className="">PAYMENT</span>
+                     </div>
+                     <div className='col-md-2'>
+                     <span className=''>100% SECURE</span> 
+                   </div>
+                    </div>
+
+                </div>
+          <div className='container pt-4'>
+            <div className="row">
+              <div className='col-6'>
                 <h3>Select Delivery Address</h3>
                 <div>
-                  <h5>ADD NEW ADDRESS</h5>
-                </div>
-              </div>
-              <h5>DEFAULT ADDRESS</h5>
+                  {!loading && user.address !== undefined && !edit ? (
+                    
+
+                    <div>
+                      <h5>ADDRESS</h5>
               <div>
                 <div id="name">
                   <div>
-                    <h4>Sumit Kumar</h4>
+                    <h4>{user.firstName + ' '+ user.lastName}</h4>
                   </div>
-                  <div id="home">Home</div>
                 </div>
                 <p>
-                  House No-C12,Old Extension Road,Gandhi Road,Karmik Nagar
-                  Dhanbad,Jharkhand,PIN-123456
+                   
+                   
+                
+                    <div>{user.address.address1}</div>
+                    <div>{user.address.address2}</div>
+                    <div>{user.address.city}</div>
+                    <div>{user.address.pincode}</div>
+
+                    
                 </p>
                 <p>
-                  Mobile No: <b>2314567898</b>
+                  Mobile No: <b>{user.phoneNumber}</b>
                 </p>
+                      </div>
+                      
+                </div>
+                  ) :(
+                      <div>
+
+                      <h5 onClick={()=>setAdd(true)}>ADD ADDRESS</h5>
+                      {  add &&
+                        <AddAddress task ={add} changetask={setAdd}/>
+                        
+                      }
+                      { edit && 
+                        <EditAddress task={edit} changetask={setEdit} />
+                         
+
+                      }
+                      </div>
+                  )
+}
+                  
+
+              </div>
+              
                 <p>Pay on Delivery</p>
                 <div id="option">
-                  <div>Remove</div>
-                  <div>EDIT</div>
+                  <div onClick={()=>setEdit(true)}>EDIT</div>
                 </div>
               </div>
-              <div id="add">+Add New Address</div>
-            </div>
-            <div id="checkDiv">
+            
+            <div className='col-6'>
               <div id="itemDiv">
                 <h5>DELIVERY ESTIMATES</h5>
-                Delivery Between 7Apr to 10Apr
+                Delivery Between {(date.getDate())+'-'+(date.getMonth()+1)+"-"+date.getFullYear()} to {(date.getDate()+2)+'-'+(date.getMonth()+1)+"-"+date.getFullYear()}
                 <br />
               </div>
-              <Link to="/payment"> {/* Use Link instead of <a> */}
-                <div id="place">CONTINUE</div>
-              </Link>
+              <div onClick={()=> navigate('/payment',{state:state})}> 
+                <button  id="place" className='btn place-button'>CONTINUE</button>
+              </div>
+            </div>
             </div>
           </div>
-        </div>
+   
       </Fragment>
     );
   }
-}
+
 
 export default AddressCheckout;

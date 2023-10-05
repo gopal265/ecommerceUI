@@ -63,6 +63,12 @@ export const registeruser = (state = {user:{}}, action) =>{
                     loading : false,
                     error : action.payload
             } 
+        case SUCCESS_LOGOUT:
+                return {
+                    loading: false,
+                    isAuthentication: false,
+                    user:null
+                };
     
         default:
             return state;
