@@ -64,10 +64,9 @@ p>b{
 }
 
 #first, #second{
-    cursor: pointer;
-}
+    cursor: pointer;}
 
-/* end of navbar */
+/* end of navbar
 
 
 #cart{
@@ -133,7 +132,7 @@ i{
     font-weight: bolder;
 }
 
-/* added same style from the cart page related to orderbox */
+added same style from the cart page related to orderbox
 
 .orderbox{
     height: 200px;
@@ -159,4 +158,4 @@ i{
 .pricedets,.amount{
     border-bottom: 1px solid gray;
     padding-bottom: 20px;
-}
+} 
