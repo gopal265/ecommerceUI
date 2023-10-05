@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import './payment.css'
-import {useDispatch} from "react-redux"
+import {useDispatch,useSelector} from "react-redux"
 import { useLocation, useNavigate } from 'react-router-dom';
-import { sendOTp } from '../../actions/order';
+import { placeOrder } from '../../actions/order';
 function PaymentPage() {
   
   const location  = useLocation()
   const state = location.state
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const [payment,setPayment] = useState(null)
+  const {bag, loading:bagloading} = useSelector(state => state.bag_data)
+  const {user} = useSelector(state => state.user)
+
+  const [payment,setPayment] = useState('')
+  const orderItems = bag.orderItems.map(item => {return  {orderItem: item.product._id,qty :item.qty,paymentInfo:payment,status:"Paid"}}  )
+
    
   const handlePay  = ()=>{
-    if(payment === null){
+    if(payment === ''){
       return
     }
-    dispatch(sendOTp())
-    navigate('/paymentotp',{state:payment})
+    let data = {
+      orderItems :orderItems
+    }
+    dispatch(placeOrder(user._id,data))
+    navigate('/paymentend')
   }
 
   return (
@@ -41,32 +49,31 @@ function PaymentPage() {
           <h4>Choose Payment Mode</h4>
           <div id="payment">
             <div id="mode">
-              <div onClick={()=>setPayment("Cash on Delivery")}>
+              <div onClick={()=>setPayment("Cash on Delivery")} className={`${payment.includes('Cash') ? "modeselect" : ""} `}>
                 <i className="fa-brands fa-amazon-pay" ></i>
                 <h5>Cash On Delivery (Cash/Card/UPI)</h5>
               </div>
-              <div id="card" onClick={()=> setPayment("Card")}>
+              <div id="card" onClick={()=> setPayment("Card")} className={`${payment.includes('Card') ? "modeselect" : ""} `}>
                 <i className="fa-solid fa-credit-card" ></i>
                 <h5>Credit/Debit Card</h5>
               </div>
-              <div onClick={()=>setPayment('UPI')}>
+              <div onClick={()=>setPayment('UPI')} className={`${payment.includes('UPI') ? "modeselect" : ""} `}>
                 <i className="fa-brands fa-cc-amazon-pay" ></i>
                 <h5>PhonePe/Google Pay/BHIM UPI</h5>
               </div>
-              <div onClick={()=> setPayment("Net Banking")}>
+              <div onClick={()=> setPayment("Net Banking")} className={`${payment.includes('Net') ? "modeselect" : ""} `}>
                 <i className="fa-solid fa-building-columns" ></i>
                 <h5>Net Banking</h5>
               </div>
-              <div onClick={()=> setPayment("EMI")}>
+              <div onClick={()=> setPayment("EMI")} className={`${payment.includes('EMI') ? "modeselect" : ""} `}>
                 <i className="fa-solid fa-money-check-dollar" ></i>
                 <h5>EMI/Pay Later</h5>
               </div>
             </div>
-            <div id="paymentDiv">
-              <h4>Cash On Delivery</h4>
+            <div className='pay center'>
 
               <div onClick={handlePay}>
-                <div id="pay">PAY</div>
+                <button className='btn pay-button' >PAY</button>
               </div>
             </div>
           </div>
@@ -76,16 +83,16 @@ function PaymentPage() {
           <div className="pricedets">PRICE DETAILS ({state.items} Items)</div>
           <div className="total">
             <span>Total MRP</span>
-            <span className="totalprice">{Math.round(state.mrp)}</span>
+            <span className="totalprice">Rs. {Math.round(state.mrp)}</span>
           </div>
           <div className="discount">
             <span>Discount on MRP</span>
-            <span className="filldiscount">- {Math.round(state.ds)}</span>
+            <span className="filldiscount">Rs. {Math.round(state.ds)}</span>
           </div>
 
           <div className="amount">
             <span>Total Amount</span>
-            <span className="amount_pay">{Math.round(state.sp)}</span>
+            <span className="amount_pay">Rs. {Math.round(state.sp)}</span>
           </div>
         </div>
       </div>

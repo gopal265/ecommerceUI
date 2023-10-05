@@ -26,13 +26,25 @@ const reducer = combineReducers({
       orders : get_order_reducer
       
 })
+const rootReducer = (state, action) => {
+      if (action.type === "SIGNOUT_REQUEST") {
+          // for all keys defined in your persistConfig(s)
+          storage.removeItem('persist:redux')
+          localStorage.setItem('email',"")
+          console.log("hello")
+          // storage.removeItem('persist:otherKey')
+  
+          return reducer(undefined, action);
+      }
+      return reducer(state, action);
+  };
 const persistConfig = {
       key: 'redux', // the key to use for storage
       storage, // the storage engine to use (localStorage, sessionStorage, or custom)
     };
 
 let initialState = {};
-const persistedReducer = persistReducer(persistConfig, reducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = createStore(persistedReducer,initialState,applyMiddleware(thunk))
 export const persistor = persistStore(store);

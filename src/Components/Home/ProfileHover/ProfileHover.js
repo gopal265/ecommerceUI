@@ -18,12 +18,10 @@ const ProfileHover = ({display}) => {
       <hr className='profile-line' />
       <div>
         <div onClick={()=> navigate('/orders')}>Orders</div>
-        <div>WishList</div>
-        <div>Gift Cards</div>
+        <div onClick={()=> navigate('/wishlist')}>WishList</div>
       </div>
       <hr className='profile-line'/>
       <div>
-        <div>Coupons</div>
       </div>
     </div>
   )

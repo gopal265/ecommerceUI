@@ -11,7 +11,7 @@ const Overview = ({user}) => {
   const navigate=useNavigate()
   const dispatch = useDispatch()
   const logout = ()=>{
-    dispatch({type:SUCCESS_LOGOUT})
+    dispatch({type:"SIGNOUT_REQUEST"})
     navigate('/')
   }
   return (

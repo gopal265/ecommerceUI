@@ -73,10 +73,11 @@ const GenderFilter = ({location}) => {
   return (
     <>
      <ul className=''>
+            <h5 className='pb-2'>Gender</h5>
             {
               gender.map((e)=>
               <li className=''>
-              <input type="radio" name="gender" value={e} className='' id={`gender-${e}`} checked={selectGender === e}  onChange={changeGender} />
+              <input type="radio" name="gender" value={e} className='' id={`gender-${e}`} checked={location.search.includes(e)}  onChange={changeGender} />
               <label className=''>{e}</label>
               </li>
               )

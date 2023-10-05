@@ -62,7 +62,6 @@ const Ppage = () => {
     
 
 
-      dispatch(getuser())
       dispatch(getSingleProduct(param.id))
 
     
@@ -165,7 +164,7 @@ const Ppage = () => {
           </div>
           <div className='pt-4'>SIMILAR PRODUCTS</div>
           <div className='container-fluid p-5' >
-            <div>
+            <div className='row'>
             {similar && similar.map((pro) => (
               <div className='col-md-3 p-2'> 
                 <Product product={pro} key={pro._id} />

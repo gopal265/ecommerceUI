@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link, useLocation, useNavigate } from 'react-router-dom'; // Import Link from React Router
 import AddAddress from './AddAddress';
 import EditAddress from './EditAddress';
+import "./address.css"
 
 const AddressCheckout = () =>{
    const {user,loading} = useSelector(state => state.user)
@@ -12,6 +13,7 @@ const AddressCheckout = () =>{
    const location = useLocation()
    const state = location.state
    const navigate = useNavigate()
+   const date = new Date()
     return (
       <Fragment>
       
@@ -91,11 +93,11 @@ const AddressCheckout = () =>{
             <div className='col-6'>
               <div id="itemDiv">
                 <h5>DELIVERY ESTIMATES</h5>
-                Delivery Between 7Apr to 10Apr
+                Delivery Between {(date.getDate())+'-'+(date.getMonth()+1)+"-"+date.getFullYear()} to {(date.getDate()+2)+'-'+(date.getMonth()+1)+"-"+date.getFullYear()}
                 <br />
               </div>
               <div onClick={()=> navigate('/payment',{state:state})}> 
-                <div id="place">CONTINUE</div>
+                <button  id="place" className='btn place-button'>CONTINUE</button>
               </div>
             </div>
             </div>

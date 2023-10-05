@@ -6,7 +6,7 @@ import {getbag, getqtyupdate, deletebag} from '../../actions/order'
 import { getuser } from "../../actions/auth";
 import { useNavigate, Link } from 'react-router-dom'
 import Emptybag from './Emptybag'
-
+import NavBar from "../NavBar/NavBar"
 
 const Bag = () => {
     
@@ -72,7 +72,7 @@ function updateqty(e) {
 const [state3, setstate3] =useState(false)
 const {deletebag:baggggg} = useSelector(state=>state.deletebag)
 
-if (state3=== false && baggggg === true && user!==null) {
+if (state3=== false && baggggg === true && user !==null) {
     dispatch(getbag(user._id))
     setstate1(false)
     setstate3(true)
@@ -107,7 +107,7 @@ useEffect(() => {
   
     if (state === false) {
         if (userloading === false) {
-            if (isAuthentication === false & user!==null) {
+            if (isAuthentication === false && user == null) {
                 // Alert.info('Log in to access BAG')
                 setstate(true)
                 
@@ -123,6 +123,7 @@ useEffect(() => {
 
     return (
         <Fragment>
+            <NavBar />
             { isAuthentication === true && user !== null?
                 
                 <Fragment>{

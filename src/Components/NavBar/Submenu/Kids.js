@@ -4,7 +4,7 @@ import {Boys_Clothing, Girls_Clothing,KFootwear,
     KBrands,
   } from '../NavBarSub.js'
 import { Link } from "react-router-dom";
-
+import "./Men.css"
 const Kids = ({show, CMenu, parentCallback}) => {
 
     
@@ -12,7 +12,7 @@ const Kids = ({show, CMenu, parentCallback}) => {
     <Fragment>
   
    
-       <div className="container-fluid">
+       <div className="container-fluid wrapper">
         <div className="row">
 
             <div className="col-md">

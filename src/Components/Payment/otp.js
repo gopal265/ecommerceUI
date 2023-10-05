@@ -18,7 +18,7 @@ const OTPVerification = () => {
   const {bag, loading:bagloading} = useSelector(state => state.bag_data)
   const location = useLocation()
   const state = location.state
-  const orderItems = bag.orderItems.map(item => {return  {product: item.product._id,qty :item.qty,paymentInfo:state,status:"Paid"}}  )
+  const orderItems = bag.orderItems.map(item => {return  {orderItem: item.product._id,qty :item.qty,paymentInfo:state,status:"Paid"}}  )
 
   const continues = (e) => {
     e.preventDefault();

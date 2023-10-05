@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { registermobile, clearErrors, registerMail, loginBYPassword, getuser } from '../../actions/auth'
 import { useNavigate } from 'react-router-dom'
 import NavBar from '../NavBar/NavBar'
-// import {useAlert} from 'react-alert'
 
 const Login = () => {
   const img = 'https://assets.myntassets.com/f_webp,dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/2023/1/25/f5e9a029-33c3-4a92-811b-ef7917fe6d441674670210687-offer-banner-300-600x240-code-_-MYNTRA300.jpg'
@@ -26,11 +25,12 @@ const Login = () => {
     if(!validator.isEmail(email.trim())) par.innerHTML = "Please Enter a valid Email Address";
 
     if(validator.isEmail(email.trim())){
-      if (!login) dispatch(registerMail(email))
-      else localStorage.setItem("email",JSON.stringify(email))
+      if (!login) {dispatch(registerMail(email))
+       localStorage.setItem("email",JSON.stringify(email))}
     }
     if (login){
       if(password.trim()!== ''){
+        localStorage.setItem("email",JSON.stringify(email))
         dispatch(loginBYPassword({email:email,password:password}))
       }
     }
@@ -40,7 +40,7 @@ const Login = () => {
 
   useEffect(() => {
     
-     if (message && user !==null &&  !login ) {
+     if (message && user  &&  !login ) {
       
     navigate('/verifyotp')
   }

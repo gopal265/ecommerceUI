@@ -4,13 +4,13 @@ import {Indian_FusionWear, Western_Wear,Shop_Occassion,
     Beauty_Personal_Care,
   } from '../NavBarSub.js'
 import { Link } from "react-router-dom";
-
+import "./Men.css"
 const Women = ({show, CMenu, parentCallback}) => {
  
     
   return (
    <Fragment>
-       <div className="container-fluid">
+       <div className="container-fluid wrapper">
         <div className="row"
           
         >

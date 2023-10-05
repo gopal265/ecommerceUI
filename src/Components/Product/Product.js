@@ -31,8 +31,8 @@ const Product = ({ product,inWish=false}) => {
                         <div className='brand pt-2 pb-1'>{product.brand}</div>
                         <div className='title pb-1'>{product.title}</div>
                         <div className='center-v prices'>
-                        <div className='sellingprice'>{product.sellingPrice}</div>
-                        <div className='mrp'>{product.mrp}</div>
+                        <div className='sellingprice'>Rs. {product.sellingPrice}</div>
+                        <div className='mrp'>Rs. {product.mrp}</div>
                         <div className='discount'>({Math.abs(Math.round(product.sellingPrice / product.mrp * 100 - 100))}% OFF)</div>
                         </div>
                         
@@ -43,10 +43,10 @@ const Product = ({ product,inWish=false}) => {
                             <div className={`${addedtoWish ? "productadded" :"" } wishlist center full-width`} onClick={addtoWishList}><span><i class="fa-regular fa-heart"></i></span>Wishlist</div>
                             <div className=' pl-3'>
                             
-                            <div className='title pb-1'>Sizes : {product.size}</div>
+                            <div className='title pb-1'>Sizes : {product.sizes}</div>
                             <div className='center-v prices'>
-                            <div className='sellingprice'>{product.sellingPrice}</div>
-                            <div className='mrp'>{product.mrp}</div>
+                            <div className='sellingprice'>Rs. {product.sellingPrice}</div>
+                            <div className='mrp'>Rs. {product.mrp}</div>
                             <div className='discount'>({Math.abs(Math.round(product.sellingPrice / product.mrp * 100 - 100))}% OFF)</div>
                             </div>
                             </div> 

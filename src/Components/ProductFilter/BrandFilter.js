@@ -46,7 +46,7 @@ const BrandFilter = ({product,location}) => {
   return (
     <div>
       <ul className=''>
-      <h5 className=''>BRANDS</h5>
+      <h5 className='pb-2'>BRANDS</h5>
             {
               brand && [...new Set(brand)].map((e)=>
               <li className='' key={e} >

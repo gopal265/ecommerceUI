@@ -20,7 +20,6 @@ import { SUCCESS_LOGOUT } from './constants/userConstants';
 import Orders from './Components/Orders/Orders';
 function App() {
   const {user} = useSelector(state => state.user)
-  const dispatch = useDispatch()
   
   return (
     <div className="App app-width">

@@ -4,8 +4,7 @@ import {Makeup, SkincareBathBody,Haircare,
     BeautyGiftMakeupSet,BTopBrands
   } from '../NavBarSub.js'
 import { Link } from "react-router-dom";
-import '../Submenu.css'
-
+import "./Men.css"
 const Beauty = () => {
     
   
@@ -14,8 +13,8 @@ const Beauty = () => {
   return (
     
    <Fragment>
-       <div classname="container-fluid">
-        <div className="row">
+      
+        <div className="row wrapper">
          
 
             <div className="col-md-auto">
@@ -81,7 +80,7 @@ const Beauty = () => {
 
           </div>
 
-        </div>
+        
      
  </Fragment>
    

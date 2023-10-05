@@ -158,14 +158,15 @@ const Products = () => {
             {/* Filter__titile div *********************************** */}
             <div className="container-fluid">
                 <div className='row'>
-                <div className="col-md-2">FILTERS</div>
-                <div className="col-md-7">SIZE</div>
+                <div className="col-md-2 center-v">FILTERS</div>
+                <div className="col-md-7 center-v"><span className={`${location.search !== '' ? 'displayfilter':"hidefilter"}`} onClick={()=> Redirect('')}>Clear Filter</span></div>
                 <div className="col-md-3">
-                    <div className='sort-wrapper'>
-                    <div className='' >
+                    <div className='sort-wrapper center'>
+                        <div className='sort pr-3'>
                             Sort by : 
                         </div>
-                        <select value={sortvalue} onChange={(e)=>handlChange(e)}>
+                   
+                        <select value={sortvalue} onChange={(e)=>handlChange(e)} className='sort-options'>
                             <option value={options[0]}>Recommended</option>
                             <option value={options[1]}>What`s New</option>
                             <option value={options[2]}>Popularity</option>
@@ -188,12 +189,12 @@ const Products = () => {
             </div>
 
 
-            <div className='container-fluid'>
+            <div className='container-fluid pt-3'>
                <div className='row' >
-                <div className="col-md-auto">
+                <div className="col-md-auto filter-container pl-3">
                     <GenderFilter location={location}/>
                     {    
-                        loading === false &&
+                        pro  &&
                         <div>
                             <CategoryFilter product={pro} location={location} />
                             <BrandFilter product={pro} location={location} />

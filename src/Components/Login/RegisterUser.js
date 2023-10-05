@@ -10,25 +10,20 @@ const Registeruser = () => {
     const redirect = useNavigate()
     const dispatch = useDispatch()
     const local_Email = localStorage.getItem('email').replace(/"/g, '');
-    const { user, error } = useSelector(state => state.updateuser)
+    const { user, error } = useSelector(state => state.user)
     const {register,handleSubmit,formState:{errors}} = useForm()
 
     const submitdata = (data) =>{
             if (data){
                 dispatch(updateUser(data,user._id))
             }
-
-
     }
 
-    
-    
-
-  
 
    useEffect(() => {
         
     if(error){
+        console.log(user)
         dispatch(clearErrors())
     }
     if ( user.userName) {
