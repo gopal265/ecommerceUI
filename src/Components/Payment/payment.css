@@ -168,7 +168,7 @@ h4 + p + p {
     justify-content: space-between;
     margin: 10px 0px;
     color: var(--primaryColor); 
-
+}
 .filldiscount {
     color: limegreen;
 }
